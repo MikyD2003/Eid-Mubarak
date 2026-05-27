@@ -392,6 +392,31 @@
       50% { transform: scale(1.05) rotate(var(--r, 0deg)); }
     }
 
+    /* ===== CREATOR CREDIT ===== */
+    .creator-credit {
+      position: fixed;
+      bottom: 20px;
+      right: 24px;
+      z-index: 50;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.35);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      pointer-events: none;
+      opacity: 0;
+      animation: fadeInCredit 1.5s ease-out 2.5s forwards;
+    }
+
+    .creator-credit span {
+      color: var(--accent);
+      text-shadow: 0 0 10px var(--accent-soft);
+    }
+
+    @keyframes fadeInCredit {
+      to { opacity: 1; }
+    }
+
     /* ===== SCANLINES ===== */
     .scanlines {
       position: fixed;
@@ -424,6 +449,7 @@
     @media (max-width: 600px) {
       .main-card { padding: 40px 24px; }
       .moon-container { width: 100px; height: 100px; top: 5%; right: 8%; }
+      .creator-credit { font-size: 0.65rem; bottom: 12px; right: 16px; }
     }
   </style>
 </head>
@@ -465,6 +491,9 @@
       </div>
     </div>
   </div>
+
+  <!-- Creator Credit -->
+  <div class="creator-credit">Created by <span>MikyD2003</span></div>
 
   <script>
     // ===== STARFIELD =====
@@ -566,12 +595,6 @@
       badge.querySelector('span:last-child').textContent = messages[msgIndex];
       badge.style.transform = 'scale(1.1)';
       setTimeout(() => badge.style.transform = 'scale(1)', 200);
-    });
-
-    // ===== GEOMETRIC BREATHE FIX =====
-    document.querySelectorAll('.geo-1, .geo-2, .geo-3').forEach(el => {
-      const computed = getComputedStyle(el);
-      el.style.setProperty('--r', computed.animationName.includes('rotate') ? '0deg' : '0deg');
     });
   </script>
 
